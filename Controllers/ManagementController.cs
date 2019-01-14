@@ -10,27 +10,40 @@ namespace Restaurant.Controllers
 {
     /**
      *
-     *  管理页面路由控制
+     *  管理页面视图控制
      *  get: /Management/AddMenu
      *  get: /Management/Complete
      *  get: /Management/ToBeProcessed
      */
     public class ManagementController : Controller
     {
+        [HttpGet]
         public IActionResult AddMenu()
         {
             return View();
         }
-
+        [HttpGet]
         public IActionResult Complete()
         {
             return View();
         }
-
+        [HttpGet]
         public IActionResult ToBeProcessed()
         {
             return View();
         }
 
     }
+
+    /**
+     *  页面api控制, 返回json数据
+     *
+     */
+    // [Produces("application/json")]
+    // [Route("api/[Controller]")]
+    // public class ManagementAPIController : Controller
+    // {
+    //     [HttpGet]
+    //     public IEnumerable<> 
+    // }
 }

@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+using Microsoft.EntityFrameworkCore;
+using Restaurant.Service;
+
 namespace Restaurant
 {
     public class Startup
@@ -33,6 +36,9 @@ namespace Restaurant
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            
+            // 添加内存数据库
+            services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("DB"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -18,7 +18,7 @@
     "Restaurant": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:80",
+      "applicationUrl": "http://localhost:80;https://localhost:443",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

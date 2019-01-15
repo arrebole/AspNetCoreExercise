@@ -8,22 +8,21 @@ namespace Restaurant.Models
         // 构造函数
         public HomeViewModel()
         {
-            Soup = new List<MenuItemModel>();
-            Dish = new List<MenuItemModel>();
-            Rice = new List<MenuItemModel>();
+            Soup = new List<MenuItemSQLModel>();
+            Dish = new List<MenuItemSQLModel>();
+            Rice = new List<MenuItemSQLModel>();
         }
         
         // 菜单列表
         // 汤
-        public List<MenuItemModel> Soup;
+        public List<MenuItemSQLModel> Soup;
 
         // 主菜
-        public List<MenuItemModel> Dish;
+        public List<MenuItemSQLModel> Dish;
 
         // 米饭
-        public List<MenuItemModel> Rice;
+        public List<MenuItemSQLModel> Rice;
 
     }
-
 
 }

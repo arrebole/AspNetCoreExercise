@@ -12,6 +12,10 @@ namespace Restaurant.Service
         }
 
         // 数据库表
-        public DbSet<MenuItemModel> Menus { get; set; }
+        public DbSet<MenuItemSQLModel> Menus { get; set; }
+        // 待处理的数据
+        public DbSet<OrderSQLModel> ToBeProcessed { get; set; }
+        // 已经处理的数据
+        public DbSet<OrderSQLModel> Complete { get; set; }
     }
 }

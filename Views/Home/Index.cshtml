@@ -21,8 +21,9 @@
     <tr>
       <th scope="col">#Id</th>
       <th scope="col">名称</th>
+      <th scope="col">总销量</th>
       <th scope="col">价格</th>
-      <th scope="col">数量</th>
+      <th scope="col">需求</th>
       <th scope="col">处理</th>
     </tr>
   </thead>
@@ -34,7 +35,9 @@
         <tr>
             <th scope="row">@item.Id</th>
             <td>@item.Name</td>
+            <td class="fontColorBright">@item.SalesVolume</td>
             <td>￥: @item.Price</td>
+            
             <th class="count" data-itemid="@item.Id">0</th>
             <td>
                 <button data-itemid="@item.Id" data-price="@item.Price" data-tohandle="increase" type="button" class="btn btn-outline-success btn-sm">添加</button>
@@ -47,7 +50,9 @@
         <tr>
             <th scope="row">@item.Id</th>
             <td>@item.Name</td>
+            <td class="fontColorBright">@item.SalesVolume</td>
             <td>￥: @item.Price</td>
+            
             <th class="count" data-itemid="@item.Id">0</th>
             <td>
                 <button data-itemid="@item.Id" data-price="@item.Price" data-tohandle="increase" type="button" class="btn btn-outline-success btn-sm">添加</button>
@@ -61,6 +66,7 @@
         <tr>
             <th scope="row">@item.Id</th>
             <td>@item.Name</td>
+            <td class="fontColorBright">@item.SalesVolume</td>
             <td>￥: @item.Price</td>
             <th class="count" data-itemid="@item.Id">0</th>
             <td>

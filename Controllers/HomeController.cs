@@ -31,14 +31,14 @@ namespace Restaurant.Controllers
             // 如果数据库为空，则添加默认数据
             if (dbContext.Menus.Count() == 0)
             {
-                dbContext.Menus.Add(new MenuItemModel { Id = 100, Group = 1, Name = "米饭", Price = 1.0, SalesVolume = 0, });
-                dbContext.Menus.Add(new MenuItemModel { Id = 200, Group = 2, Name = "糖醋里脊", Price = 5.0, SalesVolume = 0, });
-                dbContext.Menus.Add(new MenuItemModel { Id = 300, Group = 3, Name = "紫菜汤", Price = 2.0, SalesVolume = 0, });
+                dbContext.Menus.Add(new MenuItemSQLModel { Id = 100, Group = 1, Name = "米饭", Price = 1.0, SalesVolume = 0, });
+                dbContext.Menus.Add(new MenuItemSQLModel { Id = 200, Group = 2, Name = "糖醋里脊", Price = 5.0, SalesVolume = 0, });
+                dbContext.Menus.Add(new MenuItemSQLModel { Id = 300, Group = 3, Name = "紫菜汤", Price = 2.0, SalesVolume = 0, });
                 dbContext.SaveChanges();
             }
         }
 
-        // 导出整理
+        // 整理交给views的数据
         private void organizeData(DataContext dbContext)
         {
             foreach (var item in dbContext.Menus.AsNoTracking().ToList())

@@ -71,12 +71,16 @@ send.onclick = function () {
         menuList,
     };
 
+    //
+
+
     // 将订单发送给后端
     fetch("/api/applyOrder/", {
         method: "POST",
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
+        credentials: "include",
         body: JSON.stringify(message),
     })
         .then(res => res.json())

@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Service;
+
 
 namespace Restaurant
 {
@@ -36,9 +36,11 @@ namespace Restaurant
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            
-            // 添加内存数据库
+
+            // ------------------数据库配置----------------------
             services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("DB"));
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,6 +61,21 @@ namespace Restaurant
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            //----------使用登录验证中间件--------------------
+            app.Use(async (context, next) =>
+            {
+                var token = context.Request.Cookies["token"];
+
+                if (context.Request.Path != "/account/login")
+                {
+                    if (token != AdminCount.Token)
+                    {
+                        context.Response.Redirect("/account/login");
+                    }
+                }
+                await next();
+            });
+            //--------------------------------
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

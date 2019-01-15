@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace Restaurant.Models
 {
-    /* 菜单基础数据 */
-    public class MenuItemModel
+    /* 菜单基础数据用于储存在数据库 */
+    public class MenuItemSQLModel
     {
 
         // 菜编号
@@ -19,22 +19,35 @@ namespace Restaurant.Models
         public int SalesVolume { get; set; }
     }
 
-    //客户端post上的订单
-    public class Order
+    public class OrderSQLModel
     {
-        public Order()
-        {
-            menuList = new List<postMenuItem>();
-        }
+        public long Id { get; set; }
+        public string Time { get; set; }
+        public string Detail { get; set; }
+        public int Seat { get; set; }
+        public double Money { get; set; }
+    }
+
+    //客户端post上的订单
+    public class PostOrder
+    {
         public int seat { get; set; }
         public string time { get; set; }
 
-        public List<postMenuItem> menuList;
+        public List<PostOrderMenuItem> menuList;
     }
 
-    public class postMenuItem
+    public class PostOrderMenuItem
     {
         public int id { get; set; }
         public int count { get; set; }
     }
+
+    // 用户登录 post信息
+    public class LoginPostInfo
+    {
+        public string UserName { get; set; }
+        public string PassWord { get; set; }
+    }
+
 }

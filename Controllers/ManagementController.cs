@@ -35,15 +35,4 @@ namespace Restaurant.Controllers
 
     }
 
-    /**
-     *  页面api控制, 返回json数据
-     *
-     */
-    // [Produces("application/json")]
-    // [Route("api/[Controller]")]
-    // public class ManagementAPIController : Controller
-    // {
-    //     [HttpGet]
-    //     public IEnumerable<> 
-    // }
 }

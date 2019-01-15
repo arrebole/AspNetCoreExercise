@@ -1,0 +1,26 @@
+@{
+    ViewData["Title"] = "Login Page";
+}
+
+
+<div class="alert alert-warning" role="alert">
+  请先登录
+</div>
+
+<form class="login-form" >
+<div class="input-group mb-3">
+  <input id="userName" type="text" class="form-control"  placeholder="输入用户名" autocomplete="new-password">
+</div>
+
+<div class="input-group mb-3">
+  <input id="passWord" type="password" class="form-control" placeholder="输入密码" autocomplete="new-password" aria-describedby="basic-addon2">
+  <div class="input-group-append">
+    <button id="loginBtn"type="button" class="btn btn-info">登录</button>
+  </div>
+</div>
+</form>
+
+
+@section Scripts{
+    <script src="~/js/login.js"></script>
+}

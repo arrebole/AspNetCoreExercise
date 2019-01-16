@@ -67,7 +67,7 @@ send.onclick = function () {
 
     var message = {
         seat,
-        "time": new Date().toLocaleString(),
+        "time": new Date().toLocaleString('chinese', { hour12: false }),
         menuList,
     };
 
@@ -75,7 +75,7 @@ send.onclick = function () {
 
 
     // 将订单发送给后端
-    fetch("/api/applyOrder/", {
+    fetch("/home/ApplyOrder", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ send.onclick = function () {
     })
         .then(res => res.json())
         .then(res => {
-            if (res.code == "Success") {
+            if (res.code == "Ok") {
                 location.reload();
             } else {
                 $("#exampleModal").modal("hide");

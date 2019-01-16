@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Restaurant.Models
 {
-    /* 菜单基础数据用于储存在数据库 */
+    /* 数据库中储存的菜单 */
     public class MenuItemSQLModel
     {
 
@@ -19,6 +19,7 @@ namespace Restaurant.Models
         public int SalesVolume { get; set; }
     }
 
+    // 数据库中储存的订单
     public class OrderSQLModel
     {
         public long Id { get; set; }
@@ -28,19 +29,29 @@ namespace Restaurant.Models
         public double Money { get; set; }
     }
 
-    //客户端post上的订单
+    public class CompleteOrderSQLModel
+    {
+        public long Id { get; set; }
+        public string BeginTime { get; set; }
+        public string EndTime { get; set; }
+        public string Detail { get; set; }
+        public int Seat { get; set; }
+        public double Money { get; set; }
+    }
+    //post提交上的订单
     public class PostOrder
     {
-        public int seat { get; set; }
-        public string time { get; set; }
+        public int Seat { get; set; }
+        public string Time { get; set; }
 
-        public List<PostOrderMenuItem> menuList;
+        public List<PostOrderMenuItem> MenuList;
     }
 
+    // 提交的订单 list成员
     public class PostOrderMenuItem
     {
-        public int id { get; set; }
-        public int count { get; set; }
+        public int Id { get; set; }
+        public int Count { get; set; }
     }
 
     // 用户登录 post信息
@@ -50,4 +61,19 @@ namespace Restaurant.Models
         public string PassWord { get; set; }
     }
 
+    public class UpdateMenuInfo
+    {
+        public string UpdateMenuGroup { get; set; }
+        public string UpdateMenuName { get; set; }
+        public string UpdateMenuPrice { get; set; }
+        public string UpdateMenuFunc { get; set; }
+
+
+    }
+
+    // 处理订单
+    public class OrderProcess
+    {
+        public long Id { get; set; }
+    }
 }

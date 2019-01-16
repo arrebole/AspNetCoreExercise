@@ -1,6 +1,38 @@
+@model CompleteViewModel
+
 @{
     ViewData["Title"] = "Complete Page";
 }
 
+<div>
+    <table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">发起时间</th>
+            <th scope="col">完成时间</th>
+            <th scope="col">座位</th>
+            <th scope="col">金额</th>
+            <th scope="col">内容</th>
+            <th scope="col">处理</th>
+        </tr>
+    </thead>
+    <tbody>
 
-<h1>complete</h1>
+      @foreach (var item in Model.CompleteList)
+        {
+            <tr>
+                <th scope="row">@item.BeginTime</th>
+                <th scope="row">@item.EndTime</th>
+                <td>@item.Seat</td>
+                <td class="fontColorBright">@item.Money</td>
+                <td>@item.Detail</td>
+        
+                <td>
+                <button data-itemid="@item.Id" type="button" class="btn btn-outline-success btn-sm" disabled>已处理</button>
+                </td>
+        </tr>
+        }
+
+    </tbody>
+    </table>
+</div>

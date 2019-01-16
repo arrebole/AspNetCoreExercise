@@ -14,10 +14,12 @@ namespace Restaurant.Controllers
     {
         // 存放页面需要的数据
         private HomeViewModel viewDB;
+        private DataContext _dbContext;
         // 构造函数——从数据库中读取并整理视图需要的数据
         public HomeController(DataContext dbContext)
         {
             viewDB = new HomeViewModel();
+            _dbContext = dbContext;
 
             // 如果数据库为空，则添加默认数据
             this.initDB(dbContext);
@@ -31,9 +33,9 @@ namespace Restaurant.Controllers
             // 如果数据库为空，则添加默认数据
             if (dbContext.Menus.Count() == 0)
             {
-                dbContext.Menus.Add(new MenuItemSQLModel { Id = 100, Group = 1, Name = "米饭", Price = 1.0, SalesVolume = 0, });
-                dbContext.Menus.Add(new MenuItemSQLModel { Id = 200, Group = 2, Name = "糖醋里脊", Price = 5.0, SalesVolume = 0, });
-                dbContext.Menus.Add(new MenuItemSQLModel { Id = 300, Group = 3, Name = "紫菜汤", Price = 2.0, SalesVolume = 0, });
+                dbContext.Menus.Add(new MenuItemSQLModel { Group = 1, Name = "米饭", Price = 1.0, SalesVolume = 0, });
+                dbContext.Menus.Add(new MenuItemSQLModel { Group = 2, Name = "糖醋里脊", Price = 5.0, SalesVolume = 0, });
+                dbContext.Menus.Add(new MenuItemSQLModel { Group = 3, Name = "紫菜汤", Price = 2.0, SalesVolume = 0, });
                 dbContext.SaveChanges();
             }
         }
@@ -77,5 +79,48 @@ namespace Restaurant.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        
+        // 申请订单
+        [HttpPost]
+        public IActionResult ApplyOrder([FromBody]PostOrder postOrder)
+        {
+            // 此次订单的价格
+            double iMoney = 0;
+            // 订单的内容
+            var detail = "";
+
+            // ------------数据库改动增加销量------------------------
+            foreach (var item in postOrder.MenuList)
+            {
+                var it = _dbContext.Menus.FirstOrDefault(t => t.Id == item.Id);
+                // 计算此次订单价格
+                iMoney += (it.Price * (double)item.Count);
+                // 计算此次订单价格的内容
+                detail += it.Name + "X" + item.Count + " ";
+
+                // 从数据库中修改销量
+                it.SalesVolume += item.Count;
+
+                _dbContext.Menus.Update(it);
+                _dbContext.SaveChanges();
+            }
+            // ------------数据库改动生成待处理订单-----------------------
+
+            var toBeProcessed = new OrderSQLModel
+            {
+                Time = postOrder.Time,
+                Seat = postOrder.Seat,
+                Money = iMoney,
+                Detail = detail,
+            };
+
+            _dbContext.ToBeProcessed.Add(toBeProcessed);
+            _dbContext.SaveChanges();
+
+            //----------------------------------------------------------
+            return Json(new { code = "Ok" });
+        }
+
     }
 }

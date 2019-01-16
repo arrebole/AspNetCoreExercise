@@ -1,6 +1,42 @@
+@model ToBeProcessedViewModel
+
 @{
     ViewData["Title"] = "ToBeProcessed Page";
 }
 
 
-<h1>nocomplete</h1>
+<div>
+    <table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">时间</th>
+            <th scope="col">座位</th>
+            <th scope="col">金额</th>
+            <th scope="col">内容</th>
+            <th scope="col">处理</th>
+        </tr>
+    </thead>
+    <tbody>
+
+      @foreach (var item in Model.ToBeProcessedList)
+        {
+            <tr>
+                <th scope="row">@item.Time</th>
+                <td>@item.Seat</td>
+                <td class="fontColorBright">@item.Money</td>
+                <td>@item.Detail</td>
+        
+                <td>
+                <button data-itemid="@item.Id" type="button" class="btn btn-outline-success btn-sm">处理</button>
+                </td>
+        </tr>
+        }
+
+    </tbody>
+    </table>
+</div>
+
+
+@section Scripts{
+    <script src="~/js/ToBeProcessed.js"></script>
+}

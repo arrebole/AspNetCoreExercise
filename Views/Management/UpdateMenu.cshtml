@@ -1,0 +1,49 @@
+
+@{
+    ViewData["Title"] = "AddMenu Page";
+}
+
+<div id="updateMenuInfo" class="alert alert-danger" role="alert">
+  操作菜单数据
+</div>
+
+
+<form>
+  <div class="form-group">
+    <label for="updateMenuName">菜名</label>
+    <input type="text" class="form-control" id="updateMenuName" name="UpdateMenuName" placeholder="例如：皮蛋瘦肉粥">
+  </div>
+
+  <div class="row">
+    <div class="col">
+    <label for="updateMenuFunc">操作</label>
+    <select class="form-control" id="updateMenuFunc" name="UpdateMenuFunc">
+      <option>增加</option>
+      <option>修改</option>
+      <option>删除</option>
+    </select>
+  </div>
+
+  <div class="col">
+    <label for="updateMenuGroup">选择类别</label>
+    <select class="form-control" id="updateMenuGroup" name="UpdateMenuGroup">
+      <option>主菜</option>
+      <option>主食</option>
+      <option>汤类</option>
+    </select>
+  </div>
+
+  <div class="col">
+    <label for="updateMenuPrice">价格</label>
+    <input type="text" class="form-control" id="updateMenuPrice" name="UpdateMenuPrice" placeholder="0.0">
+  </div>
+  </div>
+  <div class="updateMenu-submit">
+    <button type="button" id="updateMenuBtn" class="btn btn-primary">提交</button>
+  </div>
+    
+</form>
+
+@section Scripts{
+    <script src="~/js/updateMenu.js"></script>
+}

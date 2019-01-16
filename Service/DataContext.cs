@@ -16,6 +16,6 @@ namespace Restaurant.Service
         // 待处理的数据
         public DbSet<OrderSQLModel> ToBeProcessed { get; set; }
         // 已经处理的数据
-        public DbSet<OrderSQLModel> Complete { get; set; }
+        public DbSet<CompleteOrderSQLModel> Complete { get; set; }
     }
 }

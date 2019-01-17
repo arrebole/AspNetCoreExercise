@@ -130,7 +130,7 @@ namespace Restaurant.Controllers
 
             return View(new ToBeProcessedViewModel
             {
-                ToBeProcessedList = _dbContext.ToBeProcessed.AsNoTracking().ToList().Reverse()
+                ToBeProcessedList = _dbContext.ToBeProcessed.AsNoTracking().ToList()
             });
         }
 

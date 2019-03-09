@@ -4,7 +4,7 @@ var userName = document.getElementById("userName");
 var passWord = document.getElementById("passWord");
 var btn = document.getElementById("loginBtn");
 
-
+//为浏览器添加cookie认证
 function addCookie(objName, objValue, minute) {
 
     var str = objName + "=" + objValue;

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Restaurant.Models;
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Service;
+using System.Text.RegularExpressions;
 
 namespace Restaurant.Controllers
 {
@@ -117,9 +118,40 @@ namespace Restaurant.Controllers
         [HttpGet]
         public IActionResult Complete()
         {
+            var _CompleteList = _dbContext.Complete.AsNoTracking().ToList();
+            // 统计价格
+            double _TotalRevenue = 0;
+            foreach (var item in _CompleteList)
+            {
+                _TotalRevenue += item.Money;
+            }
+
+            // 统计销量
+            var _moneyMap = new Dictionary<string, double>();
+            foreach (var item in _CompleteList)
+            {
+
+                var dateLongTime = item.EndTime;
+                var subString = Regex.Match(dateLongTime, @"^([0-9]{4})\/([0-9]+)");
+                // 如果不存在
+                if (!_moneyMap.ContainsKey(subString.Value))
+                {
+                    _moneyMap.Add(subString.Value, item.Money);
+                }
+                else
+                {
+                    _moneyMap[subString.Value] += item.Money;
+                }
+
+            }
+
+            // 返回数据
             return View(new CompleteViewModel
             {
-                CompleteList = _dbContext.Complete.AsNoTracking().ToList()
+                TotalRevenue = _TotalRevenue,
+                CompleteList = _CompleteList,
+                NowData = DateTime.Now.ToLocalTime().ToString(),
+                moneyMap = _moneyMap,
             });
         }
 
@@ -160,13 +192,6 @@ namespace Restaurant.Controllers
             _dbContext.SaveChanges();
             return Json(new { code = "Ok" });
         }
-
-        // 倒序
-        // private void SortReverse<T>(List<T> array)
-        // {
-        //     var newList = new List<T>();
-        //     for(array.Reverse())
-        // }
 
     }
 

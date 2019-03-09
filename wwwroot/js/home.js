@@ -10,7 +10,7 @@ var btns = document.querySelectorAll("button.btn");
 var counts = document.querySelectorAll("th.count");
 
 
-//
+// 为每个按钮绑定点击事件
 btns.forEach((btn) => {
     // 为每个按钮绑定点击事件
     btn.onclick = function () {
@@ -55,9 +55,7 @@ send.onclick = function () {
     // 计算订单
     var menuList = new Array();
 
-
     counts.forEach((item) => {
-
         var count = parseInt(item.innerHTML);
         if (count > 0) {
             var id = parseInt(item.dataset["itemid"]);
@@ -70,9 +68,6 @@ send.onclick = function () {
         "time": new Date().toLocaleString('chinese', { hour12: false }),
         menuList,
     };
-
-    //
-
 
     // 将订单发送给后端
     fetch("/home/ApplyOrder", {

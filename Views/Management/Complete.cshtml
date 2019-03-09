@@ -4,6 +4,28 @@
     ViewData["Title"] = "Complete Page";
 }
 
+<div class="card text-center turnover">
+  <div class="card-header">
+    营收概况
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">当前时间：@Model.NowData</h5>
+    
+    @foreach (KeyValuePair<string, double> keyValuePair in Model.moneyMap)
+    {
+            <p class="card-text"> 
+                @keyValuePair.Key
+                月总收入： 
+                <span class="badge badge-pill badge-info">@keyValuePair.Value ￥</span>
+            </p>
+    }
+    
+  </div>
+  <div class="card-footer text-muted">
+    总收入：<span class="badge badge-warning">@Model.TotalRevenue</span>
+  </div>
+</div>
+
 <div>
     <table class="table table-hover">
     <thead>

@@ -3,7 +3,7 @@ using System;
 
 namespace Restaurant.Service
 {
-    public class AdminCount
+    public class AdminAccount
     {
         public static readonly string UserName = "admin";
         public static readonly string PassWord = "123";

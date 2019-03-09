@@ -19,11 +19,11 @@ namespace Restaurant.Controllers
         public HomeController(DataContext dbContext)
         {
             viewDB = new HomeViewModel();
+            // 将数据上下文备份 挂载到类内 _dbContext中
             _dbContext = dbContext;
-
-            // 如果数据库为空，则添加默认数据
+            // 如果数据库上下文为空，则添加默认数据
             this.initDB(dbContext);
-            // 从数据库读取数据整理到viewDB
+            // 从数据库上下文 读取数据整理到viewDB
             this.organizeData(dbContext);
         }
 
@@ -65,7 +65,7 @@ namespace Restaurant.Controllers
 
 
         /*----------------------处理请求----------------------------------*/
-        // 处理首页请求
+        // 首页视图页面处理
         [HttpGet]
         public IActionResult Index()
         {
@@ -81,7 +81,7 @@ namespace Restaurant.Controllers
         }
 
         
-        // 申请订单
+        // Post请求提交订单
         [HttpPost]
         public IActionResult ApplyOrder([FromBody]PostOrder postOrder)
         {

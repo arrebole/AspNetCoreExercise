@@ -68,7 +68,7 @@ namespace Restaurant
 
                 if (context.Request.Path != "/account/login")
                 {
-                    if (token != AdminCount.Token)
+                    if (token != AdminAccount.Token)
                     {
                         context.Response.Redirect("/account/login");
                     }

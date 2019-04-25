@@ -7,6 +7,7 @@ var updateMenuName = document.getElementById("updateMenuName");
 var updateMenuGroup = document.getElementById("updateMenuGroup");
 var updateMenuPrice = document.getElementById("updateMenuPrice");
 var updateMenuFunc = document.getElementById("updateMenuFunc");
+var updateMenuInfoBig = document.getElementById("updateMenuInfoBig");
 
 updateMenuBtn.onclick = function () {
     var price = parseFloat(updateMenuPrice.value);

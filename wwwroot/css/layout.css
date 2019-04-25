@@ -56,6 +56,11 @@ body {
 }
 /* -------------------------------------- */
 
+.input-number{
+  width: 100px;
+  border-radius: 10%;
+}
+
 #total{
   font-size: 20px;
 }
@@ -77,4 +82,11 @@ body {
 
 .turnover{
   margin: 20px 0 40px 0;
+}
+.menutype{
+  font-size: 16px;
+  color: #505050c0;
+}
+.infoBig{
+  font-size: 20px;
 }

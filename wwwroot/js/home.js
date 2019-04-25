@@ -6,37 +6,29 @@ var send = document.getElementById("send");
 var seatNumber = document.getElementById("seatNumber");
 
 // 获取按钮，并绑定点击事件
-var btns = document.querySelectorAll("button.btn");
-var counts = document.querySelectorAll("th.count");
+var numInputs = document.querySelectorAll("input.input-number")
+console.log(numInputs)
 
-
-// 为每个按钮绑定点击事件
-btns.forEach((btn) => {
-    // 为每个按钮绑定点击事件
-    btn.onclick = function () {
-
-        // 获取按钮的id
-        var id = btn.dataset.itemid;
-        // 从counts中读取 id对应itemid属性的元素
-        for (var i = 0; i < counts.length; i++) {
-            if (counts[i].dataset.itemid == id) {
-
-                var old = parseInt(counts[i].innerHTML);
-
-                if (btn.dataset.tohandle == "increase") {
-                    counts[i].innerHTML = ++old;
-                    total.innerText = parseFloat(total.innerText) + parseFloat(btn.dataset["price"]);
-                } else {
-                    if (old > 0) {
-                        counts[i].innerHTML = --old;
-                        total.innerText = parseFloat(total.innerText) - parseFloat(btn.dataset["price"]);
-                    }
-                }
-            }
-        }
-    }
-
+// 绑定事件
+numInputs.forEach((input)=>{
+    input.addEventListener('input', (event)=>{
+        input.value = parseInt(input.value);
+        total.innerText = getTotal().toString();
+    })
 })
+
+// 计算总价格
+function getTotal(){
+    var total = 0;
+    
+    numInputs.forEach((input)=>{
+        var localTotal = parseFloat(input.dataset["itemprice"]) * parseInt(input.value);
+        total+= localTotal;
+    })
+    return total;
+}
+
+
 
 // 提交数据
 send.onclick = function () {
@@ -55,8 +47,8 @@ send.onclick = function () {
     // 计算订单
     var menuList = new Array();
 
-    counts.forEach((item) => {
-        var count = parseInt(item.innerHTML);
+    numInputs.forEach((item) => {
+        var count = parseInt(item.value);
         if (count > 0) {
             var id = parseInt(item.dataset["itemid"]);
             menuList.push({ id, count })
